@@ -26,7 +26,58 @@ INSERT INTO `accounts` (
     NOW()
 );
 
-
+updted------------
+INSERT INTO accounts (
+    uuid,
+    email,
+    username,
+    password,
+    full_name,
+    phone,
+    profile_picture,
+    status,
+    is_verified,
+    role,
+    last_login_at,
+    gender,
+    age,
+    height_cm,
+    religion,
+    community,
+    education,
+    profession,
+    country,
+    state,
+    city,
+    hobbies,
+    created_at,
+    updated_at
+) VALUES (
+    'e2b7d3e4-7d02-4f3e-9fa9-123456789abc', -- UUID
+    'jane.doe@example.com',
+    'janedoe123',
+    '$2y$10$XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', -- hashed password
+    'Jane Doe',
+    '9876543210',
+    'uploads/jane.jpg',
+    'active',
+    1,
+    'user',
+    NOW(),
+    'female',
+    28,
+    165,
+    'Hindu',
+    'Maratha',
+    'MBA in Marketing',
+    'Marketing Manager',
+    'India',
+    'Maharashtra',
+    'Pune',
+    'travel, reading, music',
+    NOW(),
+    NOW()
+);
 
 
 

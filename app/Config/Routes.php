@@ -46,6 +46,25 @@ $routes->get('auth/reset_password/(:segment)', 'ForgotPassword::resetPassword/$1
 $routes->post('auth/updatePassword', 'ForgotPassword::updatePassword');
 
 
+$routes->get('accounts', 'Admin::accounts');
+$routes->get('accounts/verify/(:num)', 'Admin::verify/$1');
+$routes->post('accounts/delete/(:num)', 'Admin::deleteAccounts/$1');
+$routes->get('accounts/edit/(:num)', 'Admin::editAccounts/$1');
+$routes->post('accounts/update/(:num)', 'Admin::updateAccounts/$1');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $routes->get('families', 'FamilyController::index');
 $routes->get('family/create', 'FamilyController::create');
 $routes->post('family/store', 'FamilyController::store');

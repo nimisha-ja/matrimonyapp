@@ -6,22 +6,27 @@ use CodeIgniter\Controller;
 use App\Models\UserModel;
 use App\Models\RoleModel;
 use App\Models\StaffModel;
-use App\Models\ExpenseCategoryModel;
-use App\Models\ExpenseModel;
-use App\Models\DeliveryModel;
-use App\Models\PaymentModel;
 use App\Models\HubModel;
-use App\Models\IncomeModel;
-use App\Models\BasicPayModel;
 use TCPDF;
-use App\Models\IncomeCategoryModel;
-use App\Models\InventoryModel;
-use App\Models\ReturnPickupModel;
 use App\Models\MenuModel;
 use App\Models\MenuRoleModel;
-use App\Models\SalaryHistoryModel;
-use App\Models\SalaryCycleModel;
 use App\Controllers\CustomPDF;
+use App\Models\AccountModel;
+// use App\Models\ExpenseCategoryModel;
+// use App\Models\ExpenseModel;
+// use App\Models\DeliveryModel;
+// use App\Models\PaymentModel;
+
+// use App\Models\IncomeModel;
+// use App\Models\BasicPayModel;
+
+// use App\Models\IncomeCategoryModel;
+// use App\Models\InventoryModel;
+// use App\Models\ReturnPickupModel;
+
+// use App\Models\SalaryHistoryModel;
+// use App\Models\SalaryCycleModel;
+
 
 
 class Admin extends Controller
@@ -653,6 +658,72 @@ class Admin extends Controller
         $menus = $this->getMenus();
         return view('view_staff', ['staff' => $staff, 'roles' => $roles, 'menus' => $menus,]);
     }
+    public function accounts()
+    {
+        $model = new \App\Models\AccountModel();
+        $data['accounts'] = $model->findAll();
+        $menus = $this->getMenus();
+        $data['menus'] = $menus;
+        return view('accounts/accounts', $data);
+    }
+    public function verify($id)
+    {
+        $model = new AccountModel();
+        $account = $model->find($id);
+        if (!$account) {
+            return redirect()->back()->with('error', 'Account not found.');
+        }
+        $model->update($id, ['is_verified' => 1]);
+        return redirect()->back()->with('success', 'Account verified successfully.');
+    }
 
-   
+    public function deleteAccounts($id)
+    {
+        $accountModel = new AccountModel();
+        $accountModel->delete($id);
+        return redirect()->back()->with('success', 'Account deleted successfully.');
+    }
+
+    public function editAccounts($id)
+    {
+        $model = new AccountModel();
+        $data['account'] = $model->find($id);
+        if (!$data['account']) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Account with ID $id not found.");
+        }
+        $menus = $this->getMenus();
+        $data['menus'] = $menus;
+        return view('accounts/edit', $data);
+    }
+
+    public function updateAccounts($id)
+    {
+        $model = new \App\Models\AccountModel();
+        $account = $model->find($id);
+        if (!$account) {
+            return redirect()->back()->with('error', 'Account not found.');
+        }
+        $data = $this->request->getPost();
+        $data['updated_at'] = date('Y-m-d H:i:s');
+        $file = $this->request->getFile('profile_picture');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $newName = $file->getRandomName();
+            $file->move('uploads/profiles/', $newName);
+            $data['profile_picture'] = $newName;
+            if (!empty($account['profile_picture']) && file_exists(FCPATH . 'uploads/profiles/' . $account['profile_picture'])) {
+                unlink(FCPATH . 'uploads/profiles/' . $account['profile_picture']);
+            }
+        }
+        if (!empty($data['password'])) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        } else {
+            unset($data['password']); 
+        }
+
+        if (!$model->update($id, $data)) {
+            return redirect()->back()->withInput()->with('errors', $model->errors());
+        }
+
+        return redirect()->to(site_url('accounts'))->with('success', 'Account updated successfully.');
+    }
 }
