@@ -119,11 +119,11 @@
                                                         <td><?= esc($page['slug']) ?></td>
                                                         <td><?= esc($page['status']) ?></td>
                                                         <td>
-                                                            <a href="<?= site_url('content/pages/edit/' . $page['id']) ?>">Edit</a>
+                                                            <a href="<?= site_url('content/pages/edit/' . $page['id']) ?>"><i class="ri-file-edit-line" style="font-size: 18px;"></i></a>
                                                             |
                                                             <form action="<?= site_url('content/pages/delete/' . $page['id']) ?>" method="post" style="display:inline;" onsubmit="return confirm('Delete?')">
                                                                 <?= csrf_field() ?>
-                                                                <button type="submit" style="border:none;background:none;color:red;">Delete</button>
+                                                                <button type="submit" style="border:none;background:none;color:red;">  <i class="ri-delete-bin-6-line" style="font-size: 18px; color: red;"></i></button>
                                                             </form>
                                                         </td>
                                                     </tr>
