@@ -1,3 +1,49 @@
+CREATE TABLE `accounts` ( `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, `uuid` CHAR(36) NOT NULL UNIQUE, -- for public-safe identifiers `email` VARCHAR(255) NOT NULL UNIQUE, `username` VARCHAR(50) NOT NULL UNIQUE, `password` VARCHAR(255) NOT NULL, `full_name` VARCHAR(100) DEFAULT NULL, `phone` VARCHAR(20) DEFAULT NULL, `profile_picture` VARCHAR(255) DEFAULT NULL, `status` ENUM('active', 'inactive', 'banned') DEFAULT 'inactive', `is_verified` TINYINT(1) DEFAULT 0, `role` ENUM('user', 'moderator', 'creator', 'admin') DEFAULT 'user', `last_login_at` DATETIME DEFAULT NULL, `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP, `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, `deleted_at` DATETIME DEFAULT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `accounts` (
+    `uuid`,
+    `email`,
+    `username`,
+    `password`,
+    `full_name`,
+    `phone`,
+    `profile_picture`,
+    `status`,
+    `is_verified`,
+    `role`,
+    `last_login_at`
+) VALUES (
+    UUID(), -- generates a unique UUID
+    'johndoe@example.com',
+    'johndoe',
+    '$2y$10$EXAMPLEHASHEDPASSWORDstringexample1234567890', -- use password_hash()
+    'John Doe',
+    '+1234567890',
+    NULL,
+    'active',
+    1,
+    'user',
+    NOW()
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 CREATE TABLE families (
     family_id INT AUTO_INCREMENT PRIMARY KEY,    -- Internal unique ID
     family_code VARCHAR(20) UNIQUE,               -- e.g., 'FAM-00123', unique code
@@ -65,6 +111,9 @@ CREATE TABLE donation_purposes (
 CREATE TABLE donations (
     id INT AUTO_INCREMENT PRIMARY KEY,
     family_id INT NOT NULL,
+
+
+
     amount DECIMAL(10, 2) NOT NULL,
     donation_date DATE NOT NULL,
     notes TEXT,
