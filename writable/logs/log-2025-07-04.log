@@ -166,3 +166,83 @@ in APPPATH\Views\accounts\layouts\edit.php on line 29.
 13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
 14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-04 11:12:48 --> ErrorException: Undefined variable $menus
+[Method: GET, Route: accounts/add]
+in APPPATH\Views\common\menu_view.php on line 37.
+ 1 APPPATH\Views\common\menu_view.php(37): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $menus', 'C:\\xampp\\htdocs\\matrimony\\app\\Views\\common\\menu_view.php', 37)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\matrimony\\app\\Views\\common\\menu_view.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('common/menu_view', null, true)
+ 5 APPPATH\Views\accounts\create.php(4): CodeIgniter\View\View->include('common/menu_view')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\matrimony\\app\\Views\\accounts\\create.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('accounts/create', [], true)
+ 9 APPPATH\Controllers\Admin.php(758): view('accounts/create')
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin->createacountForm()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-04 12:33:40 --> ErrorException: Undefined variable $menus
+[Method: GET, Route: content/createPage]
+in APPPATH\Views\common\menu_view.php on line 37.
+ 1 APPPATH\Views\common\menu_view.php(37): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $menus', 'C:\\xampp\\htdocs\\matrimony\\app\\Views\\common\\menu_view.php', 37)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\matrimony\\app\\Views\\common\\menu_view.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('common/menu_view', null, true)
+ 5 APPPATH\Views\content\create_page.php(4): CodeIgniter\View\View->include('common/menu_view')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\matrimony\\app\\Views\\content\\create_page.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('content/create_page', [], true)
+ 9 APPPATH\Controllers\Admin.php(794): view('content/create_page')
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin->createPage()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-04 12:34:26 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "content/layouts/accounts.php"
+[Method: GET, Route: content/createPage]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('content/layouts/accounts.php')
+ 2 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('content/layouts/accounts', null, true)
+ 3 APPPATH\Views\content\create_page.php(6): CodeIgniter\View\View->include('content/layouts/accounts')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\matrimony\\app\\Views\\content\\create_page.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('content/create_page', [], true)
+ 7 APPPATH\Controllers\Admin.php(796): view('content/create_page', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin->createPage()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-04 13:11:57 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "content/pages.php"
+[Method: GET, Route: content/pages]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('content/pages.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('content/pages', [], true)
+ 3 APPPATH\Controllers\Admin.php(789): view('content/pages', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin->pages()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-04 16:56:47 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "content/layouts/edit_pages.php"
+[Method: GET, Route: content/pages/edit/1]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('content/layouts/edit_pages.php')
+ 2 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('content/layouts/edit_pages', null, true)
+ 3 APPPATH\Views\content\edit_page.php(6): CodeIgniter\View\View->include('content/layouts/edit_pages')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\matrimony\\app\\Views\\content\\edit_page.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('content/edit_page', [], true)
+ 7 APPPATH\Controllers\Admin.php(817): view('content/edit_page', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin->editPage('1')
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

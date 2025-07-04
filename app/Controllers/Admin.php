@@ -12,6 +12,7 @@ use App\Models\MenuModel;
 use App\Models\MenuRoleModel;
 use App\Controllers\CustomPDF;
 use App\Models\AccountModel;
+use App\Models\CmsPageModel;
 // use App\Models\ExpenseCategoryModel;
 // use App\Models\ExpenseModel;
 // use App\Models\DeliveryModel;
@@ -717,7 +718,7 @@ class Admin extends Controller
         if (!empty($data['password'])) {
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         } else {
-            unset($data['password']); 
+            unset($data['password']);
         }
 
         if (!$model->update($id, $data)) {
@@ -725,5 +726,112 @@ class Admin extends Controller
         }
 
         return redirect()->to(site_url('accounts'))->with('success', 'Account updated successfully.');
+    }
+    public function createAccount()
+    {
+        $model = new \App\Models\AccountModel();
+        $validationRules = [
+            'email'    => 'required|valid_email|is_unique[accounts.email]',
+            'username' => 'required|min_length[3]|is_unique[accounts.username]',
+            'password' => 'required',
+            'full_name' => 'required',
+
+        ];
+        if (!$this->validate($validationRules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+        $data = $this->request->getPost();
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        $data['uuid'] = \CodeIgniter\I18n\Time::now()->format('YmdHis') . bin2hex(random_bytes(4));
+        $data['status'] = 'active';
+        $data['role'] = 'user';
+        $data['is_verified'] = 0;
+        if (!$model->insert($data)) {
+            return redirect()->back()->withInput()->with('errors', $model->errors());
+        }
+
+        return redirect()->to(site_url('accounts'))->with('success', 'Account created successfully.');
+    }
+
+
+    public function createacountForm()
+    {
+        $menus = $this->getMenus();
+        $data['menus'] = $menus;
+        return view('accounts/create', $data);
+    }
+
+    public function analytics()
+    {
+        $accountModel = new AccountModel();
+        $totalUsers = $accountModel->countAll();
+        $db = \Config\Database::connect();
+        $builder = $db->table('accounts');
+        $recentRegistrations = $builder->where('created_at >=', date('Y-m-d H:i:s', strtotime('-30 days')))
+            ->countAllResults();
+        $activeUsers = $builder->where('last_login_at >=', date('Y-m-d H:i:s', strtotime('-7 days')))
+            ->countAllResults();
+        $conversions = $builder->where('is_verified', 1)->countAllResults();
+        $menus = $this->getMenus();
+        return view('accounts/analytics', [
+            'totalUsers' => $totalUsers,
+            'recentRegistrations' => $recentRegistrations,
+            'activeUsers' => $activeUsers,
+            'conversions' => $conversions,
+            'menus' => $menus
+        ]);
+    }
+
+    public function pages()
+    {
+        $model = new CmsPageModel();
+        $data['pages'] = $model->findAll();
+        $menus = $this->getMenus();
+        $data['menus'] = $menus;
+        return view('content/pages', $data);
+    }
+
+    public function createPage()
+    {
+        $menus = $this->getMenus();
+        $data['menus'] = $menus;
+        return view('content/create_page', $data);
+    }
+
+    public function storePage()
+    {
+        $model = new CmsPageModel();
+        $data = $this->request->getPost();
+        $model->save($data);
+        return redirect()->to(site_url('content/pages'))->with('success', 'Page created.');
+    }
+    public function editPage($id)
+    {
+        $model = new \App\Models\CmsPageModel();
+        $page = $model->find($id);
+
+        if (!$page) {
+            return redirect()->to(site_url('content/pages'))->with('errors', 'Page not found.');
+        }
+        $menus = $this->getMenus();
+        return view('content/edit_page', ['page' => $page,'menus'=>$menus]);
+    }
+    public function updatePage($id)
+    {
+        $model = new \App\Models\CmsPageModel();
+        $data = $this->request->getPost();
+
+        if (!$model->update($id, $data)) {
+            return redirect()->back()->withInput()->with('errors', $model->errors());
+        }
+
+        return redirect()->to(site_url('content/pages'))->with('success', 'Page updated successfully.');
+    }
+    public function deletePage($id)
+    {
+        $model = new \App\Models\CmsPageModel();
+        $model->delete($id);
+
+        return redirect()->to(site_url('content/pages'))->with('success', 'Page deleted successfully.');
     }
 }

@@ -4,7 +4,7 @@ use CodeIgniter\Router\RouteCollection;
 
 /**
  * @var RouteCollection $routes
- */ 
+ */
 $routes->get('/', 'Home::index');
 $routes->get('test', 'Home::test');
 $routes->get('testemail', 'Home::sendEmail');
@@ -51,6 +51,22 @@ $routes->get('accounts/verify/(:num)', 'Admin::verify/$1');
 $routes->post('accounts/delete/(:num)', 'Admin::deleteAccounts/$1');
 $routes->get('accounts/edit/(:num)', 'Admin::editAccounts/$1');
 $routes->post('accounts/update/(:num)', 'Admin::updateAccounts/$1');
+$routes->get('accounts/add', 'Admin::createacountForm');
+$routes->post('accounts/create', 'Admin::createAccount');
+$routes->get('analytics', 'Admin::analytics');
+$routes->group('content', function ($routes) {
+    $routes->get('pages', 'Admin::pages');
+    $routes->get('createPage', 'Admin::createPage');
+    $routes->post('storePage', 'Admin::storePage');
+    $routes->get('pages/edit/(:num)', 'Admin::editPage/$1');
+    $routes->post('pages/update/(:num)', 'Admin::updatePage/$1');
+    $routes->post('pages/delete/(:num)', 'Admin::deletePage/$1');
+
+    // Add more routes for FAQs and banners
+});
+
+
+
 
 
 
@@ -103,6 +119,3 @@ $routes->post('donations/delete/(:num)', 'FamilyController::deleteDonation/$1');
 
 $routes->get('payment', 'FamilyController::payment');
 $routes->post('payment/proceed', 'FamilyController::paymentProceed');
-
-
-
