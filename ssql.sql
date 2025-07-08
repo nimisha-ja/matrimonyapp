@@ -153,6 +153,10 @@ INSERT INTO `menus` (`id`, `name`, `url`, `icon`, `parent_id`, `role_id`, `order
 
 INSERT INTO `menus` (`id`, `name`, `url`, `icon`, `parent_id`, `role_id`, `order`, `is_active`) VALUES (NULL, 'add announcements', 'add-announcements', NULL, '55', '1', '2', '1');
 
+INSERT INTO `menus` (`id`, `name`, `url`, `icon`, `parent_id`, `role_id`, `order`, `is_active`) VALUES (NULL, 'Faqs', 'faqs', NULL, '68', '1', '3', '1');
+
+INSERT INTO `menu_role` (`id`, `menu_id`, `role_id`) VALUES (NULL, '73', '1');
+
 CREATE TABLE donation_purposes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,

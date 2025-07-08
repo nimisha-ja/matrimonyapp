@@ -107,14 +107,3 @@
                 ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
             });
         </script>
-
-
-        <script src="https://cdn.tiny.cloud/1/YOUR_API_KEY/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-        <script>
-            tinymce.init({
-                selector: 'textarea',
-                height: 300,
-                plugins: 'link lists code image',
-                toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright | code'
-            });
-        </script>

@@ -1,13 +1,14 @@
+
 <div class="page-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
-                    <h4 class="mb-sm-0">Add Page</h4>
+                    <h4 class="mb-sm-0">Edit FAQ</h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);"> Add Page</a></li>
-                            <li class="breadcrumb-item active">Page</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">  FAQ</a></li>
+                            <li class="breadcrumb-item active">Edit FAQ</li>
                         </ol>
                     </div>
 
@@ -36,21 +37,24 @@
                                                                     session()->getFlashdata('errors') ?>
                                                             </div>
                                                         <?php endif; ?>
-                                                        <form action="<?= site_url('content/storePage') ?>" method="post">
+                                                        <h2>Edit Faq</h2>
+
+
+                                                        <form action="<?= site_url('faqs/update/' . $faq['id']) ?>" method="post">
                                                             <?= csrf_field() ?>
+
                                                             <div class="mb-3">
-                                                                <label>Page Title</label>
-                                                                <input type="text" name="title" class="form-control" required>
+                                                                <label for="question" class="form-label">Question</label>
+                                                                <input type="text" name="question" class="form-control" value="<?= esc($faq['question']) ?>" required>
                                                             </div>
+
                                                             <div class="mb-3">
-                                                                <label>Slug</label>
-                                                                <input type="text" name="slug" class="form-control" required>
+                                                                <label for="answer" class="form-label">Answer</label>
+                                                                <textarea name="answer" class="form-control" rows="5" required><?= esc($faq['answer']) ?></textarea>
                                                             </div>
-                                                            <div class="mb-3">
-                                                                <label>Content</label>
-                                                                <textarea name="content" class="form-control" rows="6"></textarea>
-                                                            </div>
-                                                            <button class="btn btn-primary">Save</button>
+
+                                                            <button type="submit" class="btn btn-primary">Update FAQ</button>
+                                                            <a href="<?= site_url('faqs') ?>" class="btn btn-secondary">Cancel</a>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -64,27 +68,3 @@
                 </div>
             </div>
         </div>
-      <!-- Place the first <script> tag in your HTML's <head> -->
-<script src="https://cdn.tiny.cloud/1/i1w13po0mtm5w3v1cykakws8qeie4hxlgxy449ew0dw8zo42/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-
-<!-- Place the following <script> and <textarea> tags your HTML's <body> -->
-<script>
-  tinymce.init({
-    selector: 'textarea',
-    plugins: [
-      // Core editing features
-      'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
-      // Your account includes a free trial of TinyMCE premium features
-      // Try the most popular premium features until Jul 18, 2025:
-      'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
-    ],
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-    tinycomments_mode: 'embedded',
-    tinycomments_author: 'Author name',
-    mergetags_list: [
-      { value: 'First.Name', title: 'First Name' },
-      { value: 'Email', title: 'Email' },
-    ],
-    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
-  });
-</script>

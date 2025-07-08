@@ -61,9 +61,23 @@ $routes->group('content', function ($routes) {
     $routes->get('pages/edit/(:num)', 'Admin::editPage/$1');
     $routes->post('pages/update/(:num)', 'Admin::updatePage/$1');
     $routes->post('pages/delete/(:num)', 'Admin::deletePage/$1');
-
-    // Add more routes for FAQs and banners
 });
+
+$routes->get('faqs/create', 'Admin::createFaq');
+$routes->post('faqs/store', 'Admin::storeFaq');
+$routes->get('faqs', 'Admin::faqList');
+$routes->get('faqs/edit/(:num)', 'Admin::editFaq/$1');
+$routes->post('faqs/update/(:num)', 'Admin::updateFaq/$1');
+$routes->get('faqs/delete/(:num)', 'Admin::deleteFaq/$1');
+
+$routes->get('banners', 'Admin::bannersIndex');
+$routes->get('banners/create', 'Admin::bannersCreate');
+$routes->post('banners/store', 'Admin::bannersStore');
+$routes->get('banners/edit/(:num)', 'Admin::bannersEdit/$1');
+$routes->post('banners/update/(:num)', 'Admin::bannersUpdate/$1');
+$routes->get('banners/delete/(:num)', 'Admin::bannersDelete/$1');
+
+
 
 
 

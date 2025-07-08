@@ -1,0 +1,54 @@
+CRITICAL - 2025-07-06 08:20:31 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/banners/create.php"
+[Method: GET, Route: banners/create]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/banners/create.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/banners/create', [], true)
+ 3 APPPATH\Controllers\Admin.php(890): view('admin/banners/create')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin->bannersCreate()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-06 08:21:53 --> ErrorException: Undefined variable $menus
+[Method: GET, Route: banners/create]
+in APPPATH\Views\common\menu_view.php on line 37.
+ 1 APPPATH\Views\common\menu_view.php(37): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $menus', 'C:\\xampp\\htdocs\\matrimony\\app\\Views\\common\\menu_view.php', 37)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\matrimony\\app\\Views\\common\\menu_view.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('common/menu_view', null, true)
+ 5 APPPATH\Views\content\banners_create.php(4): CodeIgniter\View\View->include('common/menu_view')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\matrimony\\app\\Views\\content\\banners_create.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('content/banners_create', [], true)
+ 9 APPPATH\Controllers\Admin.php(894): view('content/banners_create')
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin->bannersCreate()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-06 12:02:14 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/banners/index.php"
+[Method: GET, Route: banners]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/banners/index.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/banners/index', [], true)
+ 3 APPPATH\Controllers\Admin.php(887): view('admin/banners/index', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin->bannersIndex()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-06 12:13:16 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/banners/edit.php"
+[Method: GET, Route: banners/edit/1]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/banners/edit.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('admin/banners/edit', [], true)
+ 3 APPPATH\Controllers\Admin.php(924): view('admin/banners/edit', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin->bannersEdit('1')
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

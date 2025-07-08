@@ -13,21 +13,8 @@ use App\Models\MenuRoleModel;
 use App\Controllers\CustomPDF;
 use App\Models\AccountModel;
 use App\Models\CmsPageModel;
-// use App\Models\ExpenseCategoryModel;
-// use App\Models\ExpenseModel;
-// use App\Models\DeliveryModel;
-// use App\Models\PaymentModel;
-
-// use App\Models\IncomeModel;
-// use App\Models\BasicPayModel;
-
-// use App\Models\IncomeCategoryModel;
-// use App\Models\InventoryModel;
-// use App\Models\ReturnPickupModel;
-
-// use App\Models\SalaryHistoryModel;
-// use App\Models\SalaryCycleModel;
-
+use App\Models\FaqModel;
+use App\Models\BannerModel;
 
 
 class Admin extends Controller
@@ -814,7 +801,7 @@ class Admin extends Controller
             return redirect()->to(site_url('content/pages'))->with('errors', 'Page not found.');
         }
         $menus = $this->getMenus();
-        return view('content/edit_page', ['page' => $page,'menus'=>$menus]);
+        return view('content/edit_page', ['page' => $page, 'menus' => $menus]);
     }
     public function updatePage($id)
     {
@@ -833,5 +820,143 @@ class Admin extends Controller
         $model->delete($id);
 
         return redirect()->to(site_url('content/pages'))->with('success', 'Page deleted successfully.');
+    }
+
+    public function createFaq()
+    {
+        $menus = $this->getMenus();
+        $data['menus'] = $menus;
+        return view('content/create_faq', $data);
+    }
+
+    public function storeFaq()
+    {
+
+        $model = new FaqModel();
+        $model->save([
+            'question' => $this->request->getPost('question'),
+            'answer'   => $this->request->getPost('answer'),
+        ]);
+        return redirect()->to('faqs')->with('success', 'FAQ created successfully.');
+    }
+
+    public function faqList()
+    {
+        $model = new FaqModel();
+        $data['faqs'] = $model->findAll();
+        $menus = $this->getMenus();
+        $data['menus'] = $menus;
+        return view('content/faqlist', $data);
+    }
+
+    public function editFaq($id)
+    {
+        $model = new FaqModel();
+        $faq = $model->find($id);
+        $menus = $this->getMenus();
+        if (!$faq) {
+            return redirect()->to('/faqs')->with('error', 'FAQ not found.');
+        }
+
+        return view('content/faqs_edit', ['faq' => $faq, 'menus' => $menus]);
+    }
+
+    public function updateFaq($id)
+    {
+        $model = new FaqModel();
+        $model->update($id, [
+            'question' => $this->request->getPost('question'),
+            'answer'   => $this->request->getPost('answer'),
+        ]);
+
+        return redirect()->to('faqs')->with('success', 'FAQ updated successfully.');
+    }
+
+    public function deleteFaq($id)
+    {
+        $model = new FaqModel();
+        $model->delete($id);
+        return redirect()->to('faqs')->with('success', 'FAQ deleted successfully.');
+    }
+    public function bannersIndex()
+    {
+        $model = new BannerModel();
+        $data['banners'] = $model->findAll();
+        $menus = $this->getMenus();
+        $data['menus'] = $menus;
+        return view('content/banners_list', $data);
+    }
+
+    public function bannersCreate()
+    {
+        $menus = $this->getMenus();
+        $data['menus'] = $menus;
+        return view('content/banners_create',$data);
+    }
+
+    public function bannersStore()
+    {
+        $model = new BannerModel();
+
+        $image = $this->request->getFile('image');
+        $newName = '';
+
+        if ($image && $image->isValid() && !$image->hasMoved()) {
+            $newName = $image->getRandomName();
+            $image->move('uploads/banners', $newName);
+        }
+
+        $model->save([
+            'title' => $this->request->getPost('title'),
+            'image' => $newName,
+            'status' => $this->request->getPost('status') ?? 1,
+        ]);
+
+        return redirect()->to('/banners')->with('message', 'Banner created successfully.');
+    }
+
+    public function bannersEdit($id)
+    {
+        $model = new BannerModel();
+        $data['banner'] = $model->find($id);
+        $menus = $this->getMenus();
+        $data['menus'] = $menus;
+        return view('content/banners_edit', $data);
+    }
+
+    public function bannersUpdate($id)
+    {
+        $model = new BannerModel();
+        $banner = $model->find($id);
+
+        $image = $this->request->getFile('image');
+        $newName = $banner['image'];
+
+        if ($image && $image->isValid() && !$image->hasMoved()) {
+            $newName = $image->getRandomName();
+            $image->move('uploads/banners', $newName);
+            @unlink('uploads/banners/' . $banner['image']);
+        }
+
+        $model->update($id, [
+            'title' => $this->request->getPost('title'),
+            'image' => $newName,
+            'status' => $this->request->getPost('status') ?? 1,
+        ]);
+
+        return redirect()->to('/banners')->with('message', 'Banner updated successfully.');
+    }
+
+    public function bannersDelete($id)
+    {
+        $model = new BannerModel();
+        $banner = $model->find($id);
+
+        if ($banner) {
+            @unlink('uploads/banners/' . $banner['image']);
+            $model->delete($id);
+        }
+
+        return redirect()->to('/banners')->with('message', 'Banner deleted successfully.');
     }
 }
